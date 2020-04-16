@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import Spinner from "../layout/Spinner";
+import { Link } from "react-router-dom";
 import propTypes from "prop-types";
 
 class User extends Component {
@@ -15,6 +16,7 @@ class User extends Component {
   render() {
     const {
       name,
+      company,
       avatar_url,
       location,
       bio,
@@ -29,7 +31,60 @@ class User extends Component {
     } = this.props.user;
     const { loading } = this.props;
     if (loading) return <Spinner />;
-    return <div>{name}</div>;
+    return (
+      <Fragment>
+        <Link to="/" className="btn btn-light">
+          Back to Search
+        </Link>
+        Hireable:{""}
+        {hireable ? (
+          <i className="fas fa-check text-success" />
+        ) : (
+          <i className="fas fa-times-circle text-danger" />
+        )}
+        <div className="card grid-2">
+          <div className="all-center">
+            <img
+              src={avatar_url}
+              className="round-img"
+              alt=""
+              style={{ width: "150px" }}
+            />
+            <h1>{name}</h1>
+            <p>Location: {location}</p>
+          </div>
+          <div>
+            {bio && (
+              <Fragment>
+                <h3> Bio </h3>
+                <p>{bio}</p>
+              </Fragment>
+            )}
+            <a href={html_url} className="btn btn-dark my-1">
+              Visit GitHub Profile
+            </a>
+            <ul>
+              <li>
+                {login && (
+                  <Fragment>
+                    <strong>Username: </strong>
+                    {login}
+                  </Fragment>
+                )}
+              </li>
+              <li>
+                {company && (
+                  <Fragment>
+                    <strong>Website: </strong>
+                    {company}
+                  </Fragment>
+                )}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </Fragment>
+    );
   }
 }
 
