@@ -1,9 +1,17 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
+import Spinner from "../layout/Spinner";
+import propTypes from "prop-types";
 
 class User extends Component {
   componentDidMount() {
     this.props.getUser(this.props.match.params.login);
   }
+
+  static propTypes = {
+    loading: propTypes.bool.isRequired,
+    user: propTypes.object.isRequired,
+    getUser: propTypes.func.isRequired
+  };
   render() {
     const {
       name,
@@ -20,7 +28,8 @@ class User extends Component {
       hireable
     } = this.props.user;
     const { loading } = this.props;
-    return <div>User</div>;
+    if (loading) return <Spinner />;
+    return <div>{name}</div>;
   }
 }
 
