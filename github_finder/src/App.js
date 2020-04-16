@@ -46,7 +46,7 @@ class App extends Component {
   };
   clearUsers = () => this.setState({ users: [], loading: false });
 
-  //Alert User
+  //Alert User part
   setAlert = (msg, type) => {
     this.setState({ alert: { msg, type } });
 
