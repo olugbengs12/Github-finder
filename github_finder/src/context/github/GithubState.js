@@ -32,6 +32,11 @@ const GithubState = props => {
   };
 
   //Clear Users
+  const clearUsers = () => {
+    dispatch({
+      type: CLEAR_USERS
+    });
+  };
 
   //Get Repos
 
